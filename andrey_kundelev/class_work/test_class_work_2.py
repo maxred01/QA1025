@@ -5,7 +5,7 @@ import pytest
 @pytest.mark.parametrize('param', [
     ('12321'),
     ('sdfsdf'),
-    ('ваыа'),
+    ('ваыаa'),
     ('#$%^&*( ')
 ])
 def test_param(param):
