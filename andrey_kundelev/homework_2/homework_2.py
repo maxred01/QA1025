@@ -5,23 +5,9 @@
 # Title: [НАЙДЕННЫЙ_ЗАГОЛОВОК]
 
 
-import requests as Req
-import pytest
+import requests
 
-
-# @pytest.mark.parametrize('param', [
-#     ('12321'),
-#     ('sdfsdf'),
-#     ('ваыа'),
-#     ('#$%^&*( ')
-# ])
-def test_param(param):
-    URL = 'https://httpbin.org/json'
-
-    requests = Req.request(method='GET',
-                           url=URL,
-                           params={'domain_name': param}
-#                          )
-    print(requests.request)
-#
-#     assert requests.status_code == 201, f'Статус-код не равен 201. Статус код равен {requests.status_code}'
+response = requests.get('https://httpbin.org/json')
+print(response.status_code)  # Код статуса (200 = OK)
+title = response.json()
+print(f'Title: {title}')     # Ответ в формате JSON
