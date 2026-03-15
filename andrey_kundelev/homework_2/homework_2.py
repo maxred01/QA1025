@@ -6,7 +6,6 @@ data = response.json()
 title = data["slideshow"]["title"]
 print(f'Title: {title}')
 
-
 from requests.exceptions import HTTPError, RequestException
 data = {'username': 'test_user', 'password': 'qwerty'}
 url = 'https://httpbin.org/post'
