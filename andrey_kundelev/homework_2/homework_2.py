@@ -4,10 +4,11 @@
 # Выведите результат в формате:
 # Title: [НАЙДЕННЫЙ_ЗАГОЛОВОК]
 
-
 import requests
 
 response = requests.get('https://httpbin.org/json')
 print(response.status_code)  # Код статуса (200 = OK)
-title = response.json()
+data = response.json()
+title = data["slideshow"]["title"]
 print(f'Title: {title}')     # Ответ в формате JSON
+
