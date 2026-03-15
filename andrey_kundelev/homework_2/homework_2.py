@@ -1,14 +1,14 @@
 import requests
 
-# response = requests.get('https://httpbin.org/json')
-# print(response.status_code)
-# data = response.json()
-# title = data["slideshow"]["title"]
-# print(f'Title: {title}')
-#
-# params = {'page': 2, 'limit': 10}
-# response = requests.get('https://httpbin.org/get', params=params)
-# print(response.url)  # URL с параметрами: https://httpbin.org/get?page=2&limit=10
+response = requests.get('https://httpbin.org/json')
+print(response.status_code)
+data = response.json()
+title = data["slideshow"]["title"]
+print(f'Title: {title}')
+
+params = {'page': 2, 'limit': 10}
+response = requests.get('https://httpbin.org/get', params=params)
+print(response.url)  # URL с параметрами: https://httpbin.org/get?page=2&limit=10
 
 
 from requests.exceptions import HTTPError, RequestException
