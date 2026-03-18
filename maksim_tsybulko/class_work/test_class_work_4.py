@@ -34,3 +34,4 @@ def test_pupkin_status_code():
 
     with allure.step('Проверка ответа'):
         assert response.status_code == 200
+
