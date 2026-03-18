@@ -4,6 +4,7 @@ import pytest
 URL = 'https://httpbin.org/basic-auth/'
 data = '200'
 
+
 @pytest.fixture()
 def get_status():
     url = 'https://httpbin.org/ip'
