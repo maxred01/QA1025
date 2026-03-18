@@ -8,7 +8,15 @@ from allure_commons.types import Severity, LabelType
 @allure.label(LabelType.FRAMEWORK, 'pytest')
 @allure.label(LabelType.LANGUAGE, 'python')
 @allure.id('123')
-
+@allure.link("https://larisadolina.com/news/", name="Larisa's Website")
+@allure.issue("AUTH-123")
+@allure.testcase("TMS-456")
+@allure.epic("Web interface")
+@allure.feature("Essential features")
+@allure.story("Authentication")
+@allure.parent_suite("Tests for web interface")
+@allure.suite("Tests for essential features")
+@allure.sub_suite("Tests for authentication")
 
 def test_larisa_dolina_status_code():
     with allure.step('подготовка тестовых данных'):
