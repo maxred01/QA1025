@@ -25,12 +25,3 @@ def test_larisa_dolina_status_code():
 
     with allure.step('проверка ответа'):
         assert response.status_code == 200
-
-        with allure.step('проверка ответа'):
-            assert response.status_code == 200
-
-            with allure.step('проверка ответа'):
-                assert response.status_code == 200
-
-    with allure.step('проверка ответа'):
-        assert response.status_code == 200
