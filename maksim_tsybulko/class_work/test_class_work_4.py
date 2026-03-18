@@ -1,6 +1,8 @@
 import allure
+import pytest
 import requests
 from allure_commons.types import Severity, LabelType
+
 
 @allure.title('Тест для проверки сайта')
 @allure.description('Тест проверяет сайт пупкин на доступность при помощи ответа статус кода')
@@ -25,13 +27,3 @@ def test_pupkin_status_code():
 
     with allure.step('Проверка ответа'):
         assert response.status_code == 200
-
-        with allure.step('Проверка ответа'):
-            assert response.status_code == 200
-
-            with allure.step('Проверка ответа'):
-                assert response.status_code == 200
-
-    with allure.step('Проверка ответа'):
-        assert response.status_code == 200
-
