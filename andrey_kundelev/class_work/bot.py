@@ -4,15 +4,8 @@ import os
 import zipfile
 import time
 import asyncio
-import ollama, aiogram
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-
-load_dotenv()
-
-token = os.getenv('BOT_TOKEN')
 
 async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
     """Выполняет shell-команду с таймаутом и возвращает результат"""
@@ -37,7 +30,7 @@ async def run_all_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 Запускаю тесты...")
 
     # Подготовка директории для результатов
-    results_dir = Path("./allure-results")
+    results_dir = Path("./results")
     results_dir.mkdir(exist_ok=True)
 
     # Очистка предыдущих результатов
@@ -46,7 +39,7 @@ async def run_all_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Запуск pytest
     result = await execute_command(
-        "pytest -s -v class_work/class_work_12/tests --alluredir=./allure-results",
+        "pytest -s -v class_work_12/test --alluredir=./results",
         update
     )
 
@@ -66,7 +59,7 @@ async def run_ui_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 Запускаю тесты...")
 
     # Подготовка директории для результатов
-    results_dir = Path("./allure-results")
+    results_dir = Path("./results")
     results_dir.mkdir(exist_ok=True)
 
     # Очистка предыдущих результатов
@@ -75,7 +68,7 @@ async def run_ui_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Запуск pytest
     result = await execute_command(
-        "pytest -s -v class_work/class_work_12/tests/ui/ --alluredir=./allure-results",
+        "pytest -s -v class_work_12/test/ui/ --alluredir=./results",
         update
     )
 
@@ -95,7 +88,7 @@ async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 Запускаю тесты...")
 
     # Подготовка директории для результатов
-    results_dir = Path("./allure-results")
+    results_dir = Path("./results")
     results_dir.mkdir(exist_ok=True)
 
     # Очистка предыдущих результатов
@@ -104,7 +97,7 @@ async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Запуск pytest
     result = await execute_command(
-        "pytest -s -v class_work/class_work_12/tests/api/ --alluredir=./allure-results",
+        "pytest -s -v class_work_12/test/api/ --alluredir=./results",
         update
     )
 
@@ -124,7 +117,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
     """Генерация отчета и отправка архива"""
     try:
         # Проверка наличия результатов тестов
-        results_dir = Path("./allure-results")
+        results_dir = Path("./results")
         if not results_dir.exists() or not any(results_dir.iterdir()):
             await update.message.reply_text("❌ Нет данных для отчета: папка allure-results пуста или отсутствует")
             return
@@ -135,7 +128,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
         report_dir.mkdir(exist_ok=True)
 
         gen_result = await execute_command(
-            "allure generate ./allure-results --clean -o ./allure-report",
+            "allure generate ./results --clean -o ./allure-report",
             update
         )
 
@@ -162,7 +155,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
             for root, _, files in os.walk(results_dir):
                 for file in files:
                     file_path = Path(root) / file
-                    arcname = os.path.join("allure-results", os.path.relpath(file_path, results_dir))
+                    arcname = os.path.join("./results", os.path.relpath(file_path, results_dir))
                     zipf.write(file_path, arcname=arcname)
 
         # Отправка архива
@@ -192,10 +185,10 @@ async def full_cycle(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('''
 Нажми МЕНЮ ↙️, чтобы выбрать необходимую тебе для работы категорию бота:
-🔸Информация об этом боте
-🔸Тестирование API - примеры реальных автотестов
-🔸UI тесты - примеры реальных автотестов
-🔸Отчеты Allure - для оценки эффективности
+🔸About bot Описание работы бота
+🔸Run api_test Запуск API тестов
+🔸Run UI test Запуск UI тестов
+🔸View git_hub Переход в Git Hub
     ''')
 
 
@@ -204,30 +197,9 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(about_text)
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_message = update.message.text
-
-    await update.message.chat.send_action(action="typing")
-
-    try:
-        response = ollama.chat(
-            model='llama3.2:1b-instruct-q2_K',
-            messages=[
-                {
-                    'role': 'user',
-                    'content': user_message
-                }
-            ]
-        )
-
-        answer = response['message']['content']
-        await update.message.reply_text(answer)
-
-    except Exception as e:
-        await update.message.reply_text(f"Ошибка: {str(e)}")
 
 def main():
-    application = Application.builder().token(token).build()
+    application = Application.builder().token('7683227185:AAHjeK3ScoB9b51hm82O55JXBYbPWwWTx1c').build()
 
     handlers = [
         CommandHandler("run_all_tests", run_all_tests),
@@ -236,8 +208,7 @@ def main():
         CommandHandler("allurereport", generate_allure_report),
         CommandHandler("fullreport", full_cycle),
         CommandHandler("about", about),
-        CommandHandler("start", start),
-        CommandHandler("handle_message", handle_message)
+        CommandHandler("start", start)
 
     ]
 
