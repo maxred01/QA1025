@@ -184,16 +184,16 @@ async def full_cycle(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('''
-Нажми МЕНЮ ↙️, чтобы выбрать необходимую тебе для работы категорию бота:
-🔸Информация о создателе бота и его функционале
-🔸API тест - включение API теста
-🔸UI тест - примеры реальных автотестов
-🔸Отчет Allure - для оценки эффективности
+Нажми МЕНЮ⚙️️, чтобы выбрать необходимую тебе для работы категорию бота:
+🔹Информация о создателе бота и его функционале
+🔹API тест - включение API теста
+🔹UI тест - примеры реальных автотестов
+🔹Отчет Allure - для оценки эффективности
     ''')
 
 
 async def aboutmyself(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    about_text='👋Привет!\nМеня зовут Екатерина. Я студентка IT-академии ШАГ по направлению "QA-engineering"👩🏻‍💻.\nВ этом боте хранятся мои личные наработки в автотестах API и UI.\nБуду рада быть полезной🫰!'
+    about_text='Привет!✌️\nМеня зовут Константин! Я студент IT-шаг🧪, по направлени QA Engineering🚀\nЭтот бот создан для финального проекта и содержит API и UI тесты, с отчетами🤖.'
 
     await update.message.reply_text(about_text)
 
