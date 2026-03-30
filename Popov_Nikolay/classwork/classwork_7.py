@@ -1,6 +1,7 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 driver = webdriver.Chrome()
@@ -60,8 +61,8 @@ driver = webdriver.Chrome()
 # element = driver.find_element(By.XPATH, '//p[@class="mt-3"]//span[@class="text-success"]').text
 # assert element == 'Impressive'
 
-
+actions = ActionChains(driver)
 driver.get('https://demoqa.com/buttons')
-double_click = driver.find_element(By.XPATH, '//button[@id="doubleClickBtn"]')
-right_click_me = driver.find_element(By.XPATH, '//button[@id="rightClickBtn"]')
-click_me = driver.find_element(By.XPATH, '//button[@id="s2DUf"]')
+actions.double_click(double_click = driver.find_element(By.XPATH, '//button[@id="doubleClickBtn"]')).perform()
+actions.context_click(right_click_me = driver.find_element(By.XPATH, '//button[@id="rightClickBtn"]'))
+actions.click_me(click_me = driver.find_element(By.XPATH, '//button[@id="s2DUf"]'))
