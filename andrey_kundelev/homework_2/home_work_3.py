@@ -40,7 +40,6 @@ driver.get('https://demoqa.com/checkbox') # Переход на страницу
 driver.maximize_window()
 
 selected_checkbox = 'home'
-
 driver.find_element(By.XPATH, '//*[@aria-expanded="false"]/*[2]').click() # Кликаем первый плюс
 driver.find_element(By.XPATH, '(//*[@aria-expanded="false"])[1]/*[2]').click() # Кликаем второй плюс
 driver.find_element(By.XPATH, '(//*[@aria-expanded="false"])[2]/*[2]').click() # Кликаем третий плюс
