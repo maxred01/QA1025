@@ -26,31 +26,39 @@ time.sleep(1)
 name = driver.find_element(By.XPATH, '//p[@id="name"]').text
 email = driver.find_element(By.XPATH, '//p[@id="email"]').text
 currentAddress = driver.find_element(By.XPATH, '//p[@id="currentAddress"]').text
-permanentAddress = driver.find_element(By.XPATH, '//p[@id="currentAddress"]').text
+permanentAddress = driver.find_element(By.XPATH, '//p[@id="permanentAddress"]').text
 time.sleep(1)
 
 assert permanentAddress.find(permanent_address) != -1
+assert name.find(user_name) != -1
+assert email.find(user_email) != -1
 assert currentAddress.find(current_address) != -1
-# assert permanentAddress.find(permanent_address) != -1
-# assert permanentAddress.find(permanent_address) != -1
 
-# driver.get('https://demoqa.com/checkbox')
-# driver.find_element(By.XPATH, '//div[@class='rc-tree-switcher rc-tree-switcher_open'')
-# driver.find_element(By.XPATH, '//div[@class='rc-tree-switcher rc-tree-switcher_open')
-# driver.find_element(By.XPATH, //span[@aria-label = "Select Commands"]').click()
-# time.sleep(1)
-# assert driver.find_element(By.XPATH, )
+driver.get('https://demoqa.com/checkbox')
+driver.maximize_window()
+
+selected_checkbox = 'home'
+
+driver.find_element(By.XPATH, '//*[@aria-expanded="false"]/*[2]').click()
+driver.find_element(By.XPATH, '(//*[@aria-expanded="false"])[1]/*[2]').click()
+driver.find_element(By.XPATH, '(//*[@aria-expanded="false"])[2]/*[2]').click()
+driver.find_element(By.XPATH, '//*[@aria-checked="false"]').click()
+
+selected = driver.find_element(By.XPATH, '//*[@id="result"]/*[2]').text
+
+assert selected.find(selected_checkbox) != -1
 # time.sleep(1)
 
-driver.get('https://demoqa.com/radio-button')  # переходим на сайт
+driver.get('https://demoqa.com/radio-button')
 driver.find_element(By.XPATH, '//*[@for="impressiveRadio"]').click()
-assert driver.find_element(By.ID, 'impressiveRadio' ).is_selected()
+assert driver.find_element(By.ID, 'impressiveRadio').is_selected()
 time.sleep(1)
 
-driver.get('https://demoqa.com/buttons')  # переходим на сайт
-driver.find_element(By.ID, 'doubleClickBtn').click()
-driver.find_element(By.ID, 'rightClickBtn').click()
-driver.find_element(By.XPATH, '4UHpG').click()
+driver.get('https://demoqa.com/buttons')
+doubleClickBtn = driver.find_element(By.ID, 'doubleClickBtn')
+rightClickBtn = driver.find_element(By.ID, 'rightClickBtn')
+tvpiU = driver.find_element(By.ID, 'tvpiU')
 
-ActionChains.double_click(doubleClickBtn)
+ActionChains.double_click(doubleClickBtn).perform()
+ActionChains.double_click(doubleClickBtn).perform()
 
