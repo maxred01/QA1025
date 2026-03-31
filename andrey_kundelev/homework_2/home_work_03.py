@@ -10,6 +10,7 @@ driver = webdriver.Chrome()
 driver.get('https://demoqa.com/text-box')  # переходим на сайт
 driver.maximize_window()  # разрешение на весь экран
 
+
 user_name = "Кунделев Андрей"
 user_email = "test@test.com"
 current_address = 'г. Тест, ул. Тестовая, д.1, кв.1'
