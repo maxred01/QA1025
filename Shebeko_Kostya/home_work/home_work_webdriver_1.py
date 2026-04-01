@@ -9,6 +9,7 @@ driver.get('https://demoqa.com/radio-button')
 driver.maximize_window()
 
 
+
 driver.find_element(By.XPATH, value='(//*[@name="like"])[1]').click()
 assert driver.find_element(By.ID, 'yesRadio').is_selected()
 button_yes = driver.find_element(By.CLASS_NAME, 'text-success').text

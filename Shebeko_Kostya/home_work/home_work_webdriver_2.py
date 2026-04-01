@@ -7,6 +7,7 @@ from selenium.webdriver import ActionChains
 
 driver = webdriver.Chrome()
 
+
 driver.get('https://demoqa.com/webtables')
 driver.maximize_window()
 first_name = "Kost"
