@@ -12,7 +12,7 @@ driver.maximize_window()
 first_name = "Kost"
 last_name = "Shab"
 email = "kot@mail.rut"
-age ="21"
+age ="99"
 salary = "5000"
 department = "Cat"
 

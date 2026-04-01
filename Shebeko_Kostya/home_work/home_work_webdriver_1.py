@@ -8,17 +8,16 @@ driver = webdriver.Chrome()
 driver.get('https://demoqa.com/radio-button')
 driver.maximize_window()
 
-button_yes = 'You have selected'
-button_impressive = 'You have selected Impressive'
-
 
 driver.find_element(By.XPATH, value='(//*[@name="like"])[1]').click()
-selected = driver.find_element(By.XPATH, value='//p').text
-assert selected.find(button_yes) != -1
+assert driver.find_element(By.ID, 'yesRadio').is_selected()
+selected_yes = driver.find_element(By.CLASS_NAME, 'text-success').text
+assert selected_yes == 'Yes'
 
 driver.find_element(By.XPATH, value='(//*[@name="like"])[2]').click()
-selected = driver.find_element(By.XPATH, value='//p').text
-assert selected.find(button_impressive) != -1
+assert driver.find_element(By.ID, 'impressiveRadio').is_selected()
+selected_impressive = driver.find_element(By.CLASS_NAME, 'text-success').text
+assert selected_impressive == 'Impressive'
 
 button_no = driver.find_element(By.XPATH, value='(//*[@name="like"])[3]')
 assert not button_no.is_enabled()
