@@ -18,6 +18,55 @@ def delete_employee():
     driver.find_element(By.XPATH, '//span[@id="delete-record-4"]').click()
     time.sleep(1)
 
+def table_info_row():
+    first_name = driver.find_element(
+        By.XPATH,
+        '//table[@class="-striped -highlight table table-striped table-bordered table-hover"]/tbody/tr[4]/td[1]').text
+    last_name = driver.find_element(
+        By.XPATH,
+        '//table[@class="-striped -highlight table table-striped table-bordered table-hover"]/tbody/tr[4]/td[2]').text
+    email = driver.find_element(
+        By.XPATH,
+        '//table[@class="-striped -highlight table table-striped table-bordered table-hover"]/tbody/tr[4]/td[3]').text
+    age = driver.find_element(
+        By.XPATH,
+        '//table[@class="-striped -highlight table table-striped table-bordered table-hover"]/tbody/tr[4]/td[4]').text
+    salary = driver.find_element(
+        By.XPATH,
+        '//table[@class="-striped -highlight table table-striped table-bordered table-hover"]/tbody/tr[4]/td[5]').text
+    department = driver.find_element(
+        By.XPATH,
+        '//table[@class="-striped -highlight table table-striped table-bordered table-hover"]/tbody/tr[4]/td[6]').text
+    return first_name, last_name, email, age, salary, department
+
+def comparison():
+    test_data = ['Nikolay', 'Popov', 'test_name@gmail.com', 39, 6000, 'AQA Engineer']
+    for row in range(len(table_info_row())):
+        assert  table_info_row()[row] != test_data[row]
+
+def edit_employee_profile(new_name, new_second_name, new_email, new_age, new_salary, new_department):
+    driver.find_element(By.XPATH, '//span[@id="edit-record-4"]').click()
+    name_1 = driver.find_element(By.XPATH, '//input[@id="firstName"]')
+    name_1.clear()
+    name_1.send_keys(new_name)
+    name_2 = driver.find_element(By.XPATH, '//input[@id="lastName"]')
+    name_2.clear()
+    name_2.send_keys(new_second_name)
+    email = driver.find_element(By.XPATH, '//input[@id="userEmail"]')
+    email.clear()
+    email.send_keys(new_email)
+    age = driver.find_element(By.XPATH, '//input[@id="age"]')
+    age.clear()
+    age.send_keys(new_age)
+    salary = driver.find_element(By.XPATH, '//input[@id="salary"]')
+    salary.clear()
+    salary.send_keys(new_salary)
+    department = driver.find_element(By.XPATH, '//input[@id="department"]')
+    department.clear()
+    department.send_keys(new_department)
+    time.sleep(2)
+    driver.find_element(By.XPATH, '//button[@id="submit"]').click()
+
 
 def add_new_employee(first_name, last_name, email, age, salary, department):
     add_button = driver.find_element(By.XPATH, '//button[@id="addNewRecordButton"]').click()
@@ -31,7 +80,6 @@ def add_new_employee(first_name, last_name, email, age, salary, department):
     driver.find_element(By.XPATH, '//button[@id="submit"]').click()
     time.sleep(1)
     counter_employees(4)
-    delete_employee()
     time.sleep(1)
 
 
@@ -43,4 +91,15 @@ add_new_employee(
     6000,
     'AQA Engineer'
 )
+
+edit_employee_profile(
+    'Mark',
+    'Ivanov',
+    "test_new_name@gmail.com",
+    35,
+    4500,
+    'Python Developer'
+)
+comparison()
+delete_employee()
 counter_employees(3)
