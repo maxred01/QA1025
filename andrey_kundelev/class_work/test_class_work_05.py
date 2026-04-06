@@ -1,11 +1,9 @@
 import allure
-import pytest
 import requests
 from allure_commons.types import Severity, LabelType
 
-
 @allure.title('Тест для проверки сайта')
-@allure.description('Тест проверяет сайт пупкин на доступность при помощи ответа статус кода')
+@allure.description('Тест проверяет itspep на доступность при помощи ответа статус кода')
 @allure.tag('smoke', 'web', 'positive')
 @allure.severity(Severity.NORMAL)
 @allure.label(LabelType.FRAMEWORK, 'pytest')
@@ -22,8 +20,21 @@ from allure_commons.types import Severity, LabelType
 @allure.sub_suite("Tests for authentication")
 def test_pupkin_status_code():
     with allure.step('Подготовка тестовых данных'):
+        headers = {
+
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36',
+        }
         with allure.step('Вызов метода docs/v2/install-for-windows'):
-            response = requests.get('https://allurereport.org/docs/v2/install-for-windows/')
+            response = requests.get('https://itstep.by/', headers=headers)
+
+    with allure.step('Проверка ответа'):
+        assert response.status_code == 200
+
+        with allure.step('Проверка ответа'):
+            assert response.status_code == 200
+
+            with allure.step('Проверка ответа'):
+                assert response.status_code == 200
 
     with allure.step('Проверка ответа'):
         assert response.status_code == 200

@@ -1,0 +1,19 @@
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+driver = webdriver.Chrome()
+
+driver.get('https://itstep.by/') # переходим на сайт
+driver.maximize_window() #разрешение на весь экран
+time.sleep(3)
+driver.set_window_size(550, 866) # заданное разрешение
+time.sleep(3)
+#print(driver.find_element(By.XPATH,'(//header//a)[52]').text)
+#driver.find_element(By.XPATH, '(//header//a)[52]').click()
+print(driver.find_element(By.XPATH, '(//header//a)[52]').get_attribute('href'))
+
+time.sleep(2)
+
+
