@@ -1,0 +1,1 @@
+MAIN_PAGE = '//div[@class="t228__logo t-title"]'

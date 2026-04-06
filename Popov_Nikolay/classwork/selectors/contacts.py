@@ -1,0 +1,1 @@
+LINK_CONTACTS = '//li[@class="t228__list_item"][5]'

@@ -1,0 +1,1 @@
+LINK_CATALOG = '//li[@class="t228__list_item"][1]'
