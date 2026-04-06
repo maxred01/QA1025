@@ -1,0 +1,1 @@
+LINK_PROJECTS = '//li[@class="t228__list_item"][2]'
