@@ -4,33 +4,27 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+from christina_plyshevskaya.helpers.main.helpers_main import data, click_cookie
+from christina_plyshevskaya.locator.main.locator_main import website, main, chat, message, submit
+
 driver = webdriver.Chrome()
 
-driver.get('https://belbet.by/')
+driver.get(website)
 driver.maximize_window()
 
-data = [
-    'Привет',
-    'Как в это играть?',
-    'Какая минимальная и максимальная сумма депозита?',
-    'Могут ли граждане РФ играть?',
-    'Ау',
-    'Вы здесь?',
-    'Меня слышно?'
-]
+click_cookie(driver)
 
-driver.find_element(By.XPATH, '//button[contains(text(), "Принять")]').click()
+driver.find_element(By.ID, main).click()
 time.sleep(3)
-driver.find_element(By.ID, 'uw-main-button').click()
+driver.find_element(By.ID, chat).click()
 time.sleep(3)
-driver.find_element(By.ID, 'uw-button-chat').click()
-time.sleep(3)
+
 for i in range(7):
     data_random = random.choice(data)
-    driver.find_element(By.NAME, 'message').send_keys(data_random)
+    driver.find_element(By.NAME, message).send_keys(data_random)
     time.sleep(random.uniform(3, 10))
 
-    driver.find_element(By.ID, 'uw-message-submit-button').click()
+    driver.find_element(By.ID, submit).click()
     time.sleep(random.uniform(3, 10))
 
 driver.close()
