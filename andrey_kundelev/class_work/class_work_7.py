@@ -61,4 +61,3 @@ tvpiU = driver.find_element(By.ID, 'tvpiU')
 
 ActionChains.double_click(doubleClickBtn).perform()
 ActionChains.double_click(doubleClickBtn).perform()
-
