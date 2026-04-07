@@ -27,13 +27,13 @@ name = driver.find_element(By.XPATH, '//p[@id="name"]').text # Берем тек
 email = driver.find_element(By.XPATH, '//p[@id="email"]').text
 currentAddress = driver.find_element(By.XPATH, '//p[@id="currentAddress"]').text
 permanentAddress = driver.find_element(By.XPATH, '//p[@id="permanentAddress"]').text
-time.sleep(0)
+time.sleep(1)
 
 assert permanentAddress.find(permanent_address) != -1  # Проверяем текст содержится в результате
 assert name.find(user_name) != -1
 assert email.find(user_email) != -1
 assert currentAddress.find(current_address) != -1
-time.sleep(0)
+time.sleep(1)
 
 
 driver.get('https://demoqa.com/checkbox') # Переход на страницу с чекбоксами
@@ -41,8 +41,11 @@ driver.maximize_window()
 
 selected_checkbox = 'home'
 driver.find_element(By.XPATH, '//*[@aria-expanded="false"]/*[2]').click() # Кликаем первый плюс
+time.sleep(1)
 driver.find_element(By.XPATH, '(//*[@aria-expanded="false"])[1]/*[2]').click() # Кликаем второй плюс
+time.sleep(1)
 driver.find_element(By.XPATH, '(//*[@aria-expanded="false"])[2]/*[2]').click() # Кликаем третий плюс
+time.sleep(1)
 driver.find_element(By.XPATH, '//*[@aria-checked="false"]').click()
 
 selected = driver.find_element(By.XPATH, '//*[@id="result"]/*[2]').text # Берем результат из консоли
@@ -89,6 +92,7 @@ driver.find_element(By.ID, 'userEmail').send_keys("test@test.com")
 driver.find_element(By.ID, 'age').send_keys("41")
 driver.find_element(By.ID, 'salary').send_keys("100500")
 driver.find_element(By.ID, 'department').send_keys("QA")
-driver.find_element(By.ID, 'submit').click()                     
+driver.find_element(By.ID, 'submit').click()
+time.sleep(1)
 time.sleep(3)
 
