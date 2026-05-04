@@ -6,6 +6,9 @@ btn_community = '(//*[@data-tooltip-content=".submenu_Community"])[2]'
 btn_about_steam = '//*[@aria-label="Глобальное меню"]/*[3]'
 btn_support = '//*[@aria-label="Глобальное меню"]/*[4]'
 
+#Поле ввода поиска игр
+steam_search_game = '//*[@aria-autocomplete="list"]'
+
 #Кнопка переходящая на страничку поиска игр
 btn_button_search = '(//*[@aria-label="Меню магазина"]//button)[6]'
 
